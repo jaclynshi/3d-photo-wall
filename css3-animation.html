@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css3-animation</title>
+    <style>
+        .demo-regular {
+            display: block;
+            position: relative;
+        }
+
+        .demo {
+            width: 0;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-top-color: #2196F3;
+            border-right-color: aquamarine;
+            border-bottom-color: blueviolet;
+            border-left-color: chocolate;
+        }
+
+        .demo-regular .triangle {
+            width: 0;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-width: 0 50px 86.6px;
+            border-color: transparent transparent black;
+        }
+
+        .demo-regular .ztx {
+            width: 25px;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-bottom-width: 0;
+            border-color: #2196F3 transparent transparent;
+        }
+
+        .demo-regular .dtx {
+            width: 25px;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-top-width: 0;
+            border-color: transparent transparent blueviolet;
+        }
+
+        .demo-regular .rect {
+            width: 0;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-color: black;
+        }
+
+        .demo-regular .pentagon {
+            position: relative;
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 0 80.9px 59px;
+            border-style: solid;
+            border-color: transparent transparent black;
+            margin-bottom: 105.1px;
+        }
+
+        .demo-regular .pentagon::before {
+            content: '';
+            position: absolute;
+            top: 58.8px;
+            left: -80.9px;
+            width: 100px;
+            height: 0;
+            border-width: 95.1px 30.9px 0;
+            border-style: solid;
+            border-color: black transparent transparent;
+        }
+
+        .demo-regular .six {
+            width: 100px;
+            height: 0;
+            border-width: 0 50px 86.6px;
+            border-style: solid;
+            border-color: transparent transparent black;
+            position: relative;
+            display: block;
+            margin-bottom: 96.6px;
+        }
+
+        .demo-regular .six::before {
+            content: '';
+            position: absolute;
+            top: 86.6px;
+            left: -50px;
+            width: 100px;
+            height: 0;
+            border-width: 86.6px 50px 0;
+            border-style: solid;
+            border-color: black transparent transparent;
+        }
+
+        .demo-regular .seven {
+            width: 0;
+            height: 0;
+            border-width: 0 90px 43px;
+            border-style: solid;
+            border-color: transparent transparent black;
+            position: relative;
+            margin-bottom: 260px;
+            margin-left: 20px;
+        }
+
+        .demo-regular .seven::before {
+            content: '';
+            position: absolute;
+            top: 43px;
+            left: -112px;
+            width: 180px;
+            border-width: 0 22px 97px;
+            border-style: solid;
+            border-color: transparent transparent black;
+        }
+
+        .demo-regular .seven::after {
+            content: '';
+            position: absolute;
+            top: 140px;
+            left: -112px;
+            width: 100px;
+            border-width: 78px 62px 0;
+            border-style: solid;
+            border-color: black transparent transparent;
+        }
+
+        .demo-regular .eight {
+            position: relative;
+            width: 242px;
+            height: 100px;
+            background-color: black;
+            margin-bottom: 100px;
+        }
+
+        .demo-regular .eight::before {
+            content: '';
+            width: 100px;
+            height: 0;
+            position: absolute;
+            top: -71px;
+            border-width: 0 71px 71px;
+            border-style: solid;
+            border-color: transparent transparent black;
+        }
+
+        .demo-regular .eight::after {
+            content: '';
+            width: 100px;
+            height: 0;
+            position: absolute;
+            top: 100px;
+            border-width: 71px 71px 0;
+            border-style: solid;
+            border-color: black transparent transparent;
+        }
+
+        .lx {
+            background-color: #2196F3;
+            width: 200px;
+            height: 200px;
+            clip-path: polygon(20% 20%, 80% 20%, 70% 80%, 10% 80%);
+        }
+
+        .star {
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+            clip-path: polygon(50% 0, 65% 40%, 100% 40%, 72% 60%, 85% 100%, 50% 75%, 15% 100%, 28% 60%, 0 40%, 35% 40%);
+        }
+
+        .demo-cube {
+            position: absolute;
+        }
+
+        .cube-inner {
+            transform-style: preserve-3d;
+            transform-origin: 25px 25px;
+            transform: rotateX(-33.5deg) rotateY(45deg);
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        .cube-inner li {
+            width: 50px;
+            height: 50px;
+            /* background: radial-gradient(transparent 30%, rgba(0,0,0,0.3) 100%); */
+            list-style: none;
+            position: absolute;
+        }
+
+        .cube-inner .top {
+            transform: rotateX(90deg) translateZ(25px);
+            background-color: aqua;
+        }
+
+        .cube-inner .bottom {
+            transform: rotateX(-90deg) translateZ(25px);
+            background-color: black;
+        }
+
+        .cube-inner .front {
+            transform: translateZ(25px);
+            background-color: blue;
+        }
+
+        .cube-inner .back {
+            transform: rotateX(-180deg) translateZ(25px);
+            background-color: blueviolet;
+        }
+
+        .cube-inner .left {
+            transform: rotateY(-90deg) translateZ(25px);
+            background-color: brown;
+        }
+
+        .cube-inner .right {
+            transform: rotateY(90deg) translateZ(25px);
+            background-color: yellow;
+        }
+
+
+        .cube-inner1 {
+            position: absolute;
+            top: 150px;
+            left: 50px;
+            transform-style: preserve-3d;
+            transform-origin: 50px 50px;
+            transform: rotateX(-33.5deg) rotateY(45deg);
+            animation: slowRotate 6s ease-in-out infinite 12s;
+        }
+
+        .cube-inner1 li {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            list-style: none;
+            opacity: .3;
+        }
+
+        .cube-inner1 .top {
+            background: red;
+            animation: top 2s ease-in-out 10s;
+            animation-fill-mode: forwards;
+        }
+
+        .cube-inner1 .bottom {
+            background-color: yellow;
+            animation: bottom 2s ease-in-out 8s;
+            animation-fill-mode: forwards;
+        }
+
+        .cube-inner1 .front {
+            background-color: aqua;
+            animation: front 2s ease-in-out 6s;
+            animation-fill-mode: forwards;
+        }
+
+        .cube-inner1 .back {
+            background-color: blue;
+            animation: back 2s ease-in-out 4s;
+            animation-fill-mode: forwards;
+        }
+
+        .cube-inner1 .right {
+            background-color: cadetblue;
+            animation: right 2s ease-in-out 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .cube-inner1 .left {
+            background-color: blueviolet;
+            animation: left 2s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        .demo-cube .cones-inner {
+            display: block;
+            position: absolute;
+            top: 350px;
+            left: 50px;
+            margin: -25px 0 0 -25px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform-origin: 25px 25px;
+            transform-origin: 25px 25px;
+        }
+
+        .demo-cube .cones-inner>li {
+            position: absolute;
+            top: 0;
+            z-index: 10;
+            border-left: 28.8675px solid transparent;
+            border-right: 28.8675px solid transparent;
+            list-style: none;
+        }
+
+        .demo-cube .cones-inner .front {
+            border-bottom: 50px solid rgba(80, 80, 80, 0.7);
+            -webkit-transform: rotate3d(-1, 1.732, 0, 70.5deg);
+            transform: rotate3d(-1, 1.732, 0, 70.5deg);
+            -webkit-transform-origin: 25% 50%;
+            transform-origin: 25% 50%;
+        }
+
+        .demo-cube .cones-inner .left {
+            border-bottom: 50px solid rgba(120, 120, 120, 0.7);
+            -webkit-transform: rotate3d(1, 1.732, 0, -70.5deg);
+            transform: rotate3d(1, 1.732, 0, -70.5deg);
+            -webkit-transform-origin: 75% 50%;
+            transform-origin: 75% 50%;
+        }
+
+        .demo-cube .cones-inner .right {
+            border-bottom: 50px solid rgba(160, 160, 160, 0.7);
+            -webkit-transform: rotate3d(1, 0, 0, 70.5deg);
+            transform: rotate3d(1, 0, 0, 70.5deg);
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+        }
+
+        .demo-cube .cones-inner .bottom {
+            border-bottom: 50px solid rgba(200, 200, 200, 0.7);
+        }
+
+        .cones-inner1 {
+            position: absolute;
+            top: 450px;
+            left: 50px;
+            margin: -25px 0 0 -25px;
+            transform-style: preserve-3d;
+            transform-origin: 25px 25px;
+            transform: rotateX(20deg) rotateY(20deg);
+            animation: slowRotate 6s ease-in-out infinite 8s;
+        }
+
+        .cones-inner1 li {
+            position: absolute;
+            list-style: none;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+        }
+
+        .cones-inner1 li.bottom {
+            transform-origin: center bottom;
+            animation: conesBottom 2s ease-in-out;
+            animation-fill-mode: forwards;
+            border-bottom: 43.3px solid rgba(80, 80, 80, 0.3);
+        }
+
+        .cones-inner1 li.right {
+            transform-origin: right bottom;
+            animation: conesRight 2s ease-in-out 2s;
+            animation-fill-mode: forwards;
+            border-bottom: 43.3px solid rgba(120, 120, 120, 0.3);
+        }
+
+        .cones-inner1 li.left {
+            transform-origin: left bottom;
+            animation: conesLeft 2s ease-in-out 4s;
+            animation-fill-mode: forwards;
+            border-bottom: 43.3px solid rgba(160, 160, 160, 0.3);
+        }
+
+        .cones-inner1 li.front {
+            transform-origin: center bottom;
+            animation: conesFront 2s ease-out 6s;
+            animation-fill-mode: forwards;
+            border-bottom: 43.3px solid rgba(200, 200, 200, 0.3);
+        }
+
+        .sphere-inner {
+            position: absolute;
+            margin: 25px 0;
+            top: 500px;
+            left: 50px;
+            transform-style: preserve-3d;
+            transform-origin: 25px 25px;
+            transform: rotateX(-15deg) rotateY(70deg);
+            animation: ballRotate 6s linear infinite 2s;
+        }
+
+        .sphere-inner li {
+            list-style: none;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .sphere-inner li.a {
+            transform: rotateY(-90deg);
+        }
+
+        .sphere-inner li.b {
+            transform: rotateY(45deg);
+        }
+
+        .sphere-inner li.c {
+            transform: rotateY(225deg);
+        }
+
+        .sphere-inner li.d {
+            transform: rotateY(315deg);
+        }
+
+
+        .demo-perspective-photo {
+            position: absolute;
+            width: 100%;
+            height: 200px;
+            top: 50%;
+            left: 300px;
+            background-color: #fff;
+            zoom: 2;
+        }
+
+        .demo-perspective-photo #stage {
+            width: 100%;
+            height: 200px;
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            perspective: 800px;
+            -webkit-transition: top 0.5s;
+            -moz-transition: top 0.5s;
+            transition: top 0.5s;
+            position: relative;
+        }
+
+        .demo-perspective-photo #container {
+            position: absolute;
+            width: 200px;
+            height: 130px;
+            left: 50%;
+            top: 50%;
+            margin-left: -32px;
+            margin-top: -18px;
+            cursor: pointer;
+            -webkit-transition: -webkit-transform 1s;
+            -moz-transition: -moz-transform 1s;
+            transition: transform 1s;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-animation: photoRotate 18s ease-in-out infinite 2s;
+            animation: photoRotate 18s ease-in-out infinite 2s;
+        }
+
+        .demo-perspective-photo .example {
+            width: 200px;
+            height: 130px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            -webkit-transition: opacity 1s, -webkit-transform 1s;
+            -moz-transition: opacity 1s, -moz-transform 1s;
+            transition: opacity 1s, transform 1s;
+            position: absolute;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .demo-perspective-photo .example:nth-child(1) {
+            -webkit-transform: rotateY(0deg) translateZ(300px);
+            transform: rotateY(0deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .demo-perspective-photo .example:nth-child(2) {
+            -webkit-transform: rotateY(60deg) translateZ(300px);
+            transform: rotateY(60deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .demo-perspective-photo .example:nth-child(3) {
+            -webkit-transform: rotateY(120deg) translateZ(300px);
+            transform: rotateY(120deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .demo-perspective-photo .example:nth-child(4) {
+            -webkit-transform: rotateY(180deg) translateZ(300px);
+            transform: rotateY(180deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .demo-perspective-photo .example:nth-child(5) {
+            -webkit-transform: rotateY(240deg) translateZ(300px);
+            transform: rotateY(240deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .demo-perspective-photo .example:nth-child(6) {
+            -webkit-transform: rotateY(300deg) translateZ(300px);
+            transform: rotateY(300deg) translateZ(300px);
+            background-color: rgba(153, 204, 204, 0.8);
+        }
+
+        .threeDPhotoWall {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            top: 800px;
+            left: 120px;
+            perspective: 800px;
+        }
+
+        .threeDPhotoWall .container {
+            transform-style: preserve-3d;
+            animation: photoRotate 18s ease-in-out infinite 2s;
+        }
+
+        .threeDPhotoWall .photo {
+            background-color: rgba(153, 204, 204, 0.8);
+            width: 100px;
+            height: 50px;
+            position: absolute;
+        }
+
+        .threeDPhotoWall .photo:nth-child(1) {
+            transform: rotateY(0) translateZ(100px);
+        }
+
+        .threeDPhotoWall .photo:nth-child(2) {
+            transform: rotateY(60deg) translateZ(100px);
+        }
+
+        .threeDPhotoWall .photo:nth-child(3) {
+            transform: rotateY(120deg) translateZ(100px);
+        }
+
+        .threeDPhotoWall .photo:nth-child(4) {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .threeDPhotoWall .photo:nth-child(5) {
+            transform: rotateY(240deg) translateZ(100px);
+        }
+
+        .threeDPhotoWall .photo:nth-child(6) {
+            transform: rotateY(300deg) translateZ(100px);
+        }
+
+        @keyframes conesBottom {
+
+            100%,
+            to {
+                transform: rotateX(-90deg);
+            }
+        }
+
+        @keyframes conesRight {
+            50% {
+                transform: rotateY(60deg);
+            }
+
+            100%,
+            to {
+                transform: rotateY(60deg) rotateX(19.5deg);
+            }
+        }
+
+        @keyframes conesLeft {
+            50% {
+                transform: rotateY(-60deg);
+            }
+
+            100%,
+            to {
+                transform: rotateY(-60deg) rotateX(19.5deg);
+            }
+        }
+
+        @keyframes conesFront {
+
+            100%,
+            to {
+                transform: rotateX(-19.5deg);
+            }
+        }
+
+        @keyframes fastpin {
+            0% {
+                transform: rotateX(-33.5deg) rotateY(45deg);
+            }
+
+            40%,
+            to {
+                transform: rotateX(-33.5deg) rotateY(-315deg);
+            }
+        }
+
+        @keyframes top {
+            50% {
+                transform: rotateX(90deg);
+            }
+
+            100%,
+            to {
+                transform: rotateX(90deg) translateZ(50px);
+            }
+        }
+
+        @keyframes bottom {
+            50% {
+                transform: rotateX(-90deg);
+            }
+
+            100%,
+            to {
+                transform: rotateX(-90deg) translateZ(50px);
+            }
+        }
+
+        @keyframes front {
+
+            100%,
+            to {
+                transform: translateZ(50px);
+            }
+        }
+
+        @keyframes back {
+            50% {
+                transform: rotateX(180deg);
+            }
+
+            100%,
+            to {
+                transform: rotateX(180deg) translateZ(50px);
+            }
+        }
+
+        @keyframes right {
+            50% {
+                transform: rotateY(90deg);
+            }
+
+            100%,
+            to {
+                transform: rotateY(90deg) translateZ(50px)
+            }
+        }
+
+        @keyframes left {
+            50% {
+                transform: rotateY(-90deg);
+            }
+
+            100%,
+            to {
+                transform: rotateY(-90deg) translateZ(50px);
+            }
+        }
+
+        @keyframes slowRotate {
+            0% {
+                -webkit-transform: rotateY(35deg);
+                transform: rotateY(35deg);
+            }
+
+            100% {
+                -webkit-transform: rotateY(395deg);
+                transform: rotateX(20deg) rotateY(395deg);
+            }
+        }
+
+        @keyframes ballRotate {
+            0% {
+                -webkit-transform: rotateX(-15deg) rotateY(70deg);
+                transform: rotateX(-15deg) rotateY(70deg);
+            }
+
+            100% {
+                -webkit-transform: rotateX(-15deg) rotateY(430deg);
+                transform: rotateX(-15deg) rotateY(430deg);
+            }
+        }
+
+        @keyframes photoRotate {
+            0% {
+                -webkit-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+            }
+
+            16.7% {
+                -webkit-transform: rotateY(60deg);
+                transform: rotateY(60deg);
+            }
+
+            33.3% {
+                -webkit-transform: rotateY(120deg);
+                transform: rotateY(120deg);
+            }
+
+            50% {
+                -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+
+            66.7% {
+                -webkit-transform: rotateY(240deg);
+                transform: rotateY(240deg);
+            }
+
+            83.3% {
+                -webkit-transform: rotateY(300deg);
+                transform: rotateY(300deg);
+            }
+
+            100% {
+                -webkit-transform: rotateY(360deg);
+                transform: rotateY(360deg);
+            }
+        }
+
+        @-webkit-keyframes waves {
+            10% {
+                height: 20%;
+            }
+
+            20% {
+                height: 60%;
+            }
+
+            40% {
+                height: 40%;
+            }
+
+            50% {
+                height: 100%;
+            }
+
+            100% {
+                height: 50%;
+            }
+        }
+
+        @-webkit-keyframes aniSix-x {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes aniSix-x {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes aniSix-y {
+            0% {
+                -webkit-transform: scale(0.1);
+            }
+
+            50% {
+                -webkit-transform: scale(1);
+            }
+
+            100% {
+                -webkit-transform: scale(0.1);
+            }
+        }
+
+        @keyframes aniSix-y {
+            0% {
+                transform: scale(0.1);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.1);
+            }
+        }
+
+        @-webkit-keyframes aniTwo {
+            0% {
+                -webkit-transform: scale(0.1);
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: scale(1.2);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes aniTwo {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+        }
+
+        @-webkit-keyframes aniTen-e {
+            0% {
+                opacity: 0.1;
+                -webkit-transform: scale(1.2);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: scale(0.4);
+            }
+        }
+
+        @keyframes aniTen-e {
+            0% {
+                opacity: 0.1;
+                transform: scale(1.2);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(0.4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo-regular" style="display: none;">
+        <!--正几何边形-->
+
+        <div class="demo"></div>
+
+        <!--正三边形-->
+        <div class="triangle"></div>
+
+        <!--正梯形-->
+        <div class="ztx"></div>
+
+        <!--倒梯形-->
+        <div class="dtx"></div>
+
+        <!--正四边形-->
+        <div class="rect"></div>
+
+        <!--正五边形-->
+        <div class="pentagon"></div>
+
+        <!--正六边形-->
+        <div class="six"></div>
+
+        <!--正七边形-->
+        <div class="seven"></div>
+
+        <!--正八边形-->
+        <div class="eight"></div>
+
+        <div class="lx"></div>
+
+        <div class="star"></div>
+    </div>
+
+    <div class="demo-cube">
+        <!--立方体-->
+        <ul class="cube-inner" style="display: none;">
+            <li class="top">top</li>
+            <li class="bottom">bottom</li>
+            <li class="front">front</li>
+            <li class="back">back</li>
+            <li class="right">right</li>
+            <li class="left">left</li>
+        </ul>
+
+        <ul class="cube-inner1" style="display: none;">
+            <li class="top">top</li>
+            <li class="bottom">bottom</li>
+            <li class="front">front</li>
+            <li class="back">back</li>
+            <li class="right">right</li>
+            <li class="left">left</li>
+        </ul>
+
+        <!--正四面体-->
+        <ul class="cones-inner" style="display: none;">
+            <li class="bottom"></li>
+            <li class="front"></li>
+            <li class="right"></li>
+            <li class="left"></li>
+        </ul>
+
+        <ul class="cones-inner1" style="display: none;">
+            <li class="front"></li>
+            <li class="left"></li>
+            <li class="right"></li>
+            <li class="bottom"></li>
+        </ul>
+
+        <!--球体-->
+        <ui class="sphere-inner" style="display: none;">
+            <li class="a"></li>
+            <li class="b"></li>
+            <li class="c"></li>
+            <li class="d"></li>
+        </ui>
+
+        <!-- 3d照片墙 -->
+        <div class="demo-perspective-photo">
+            <div id="stage">
+                <div id="container">
+                    <!-- 此处使用div代替 -->
+                    <div class='example' style="background-image: url('images/1.jpeg');"></div>
+                    <div class='example' style="background-image: url('images/2.jpeg');"></div>
+                    <div class='example' style="background-image: url('images/3.jpeg');"></div>
+                    <div class='example' style="background-image: url('carousel/1.jpeg');"></div>
+                    <div class='example' style="background-image: url('carousel/2.jpeg');"></div>
+                    <div class='example' style="background-image: url('carousel/3.jpeg');"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
