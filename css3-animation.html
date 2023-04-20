@@ -555,6 +555,216 @@
             transform: rotateY(300deg) translateZ(100px);
         }
 
+        .card {
+            transform-style: preserve-3d;
+            width: 200px;
+            height: 300px;
+            cursor: pointer;
+            display: inline-flex;
+        }
+
+        .card .number,
+        .card .text {
+            background: #000;
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all .5s;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px lightgray;
+        }
+
+        .card .number {
+            color: #fff;
+            font-size: 12vw;
+            font-family: monospace;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .card:first-child .number {
+            background-image: url('images/spring.jpeg');
+        }
+
+        .card:nth-child(2) .number {
+            background-image: url('images/summer.jpeg');
+        }
+
+        .card:nth-child(3) .number {
+            background-image: url('images/autumn.webp');
+        }
+
+        .card:nth-child(4) .number {
+            background-image: url('images/winter.jpeg');
+        }
+
+        .card .number::before {
+            content: attr(data-text);
+            animation: changeColor 3s linear infinite;
+            animation-delay: calc(0.75s * var(--i));
+        }
+
+        .card .text {
+            color: #fff;
+            text-align: center;
+            padding: 0 15px;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            animation: none;
+            box-sizing: border-box;
+        }
+
+        .card:hover .number {
+            transform: rotateY(-180deg);
+        }
+
+        .card:hover .text {
+            transform: rotateY(0deg);
+        }
+
+        @keyframes changeColor {
+            0% {
+                text-shadow: 0 0 10px #00b3ff;
+            }
+
+            100% {
+                filter: blur(2px) hue-rotate(360deg);
+                text-shadow: 0 0 10px #00b3ff;
+            }
+        }
+
+        .heart {
+            animation: heartAnimation 1.33s ease-in-out infinite;
+            transition: all .3s;
+        }
+
+        .border {
+            position: relative;
+            color: #977962;
+            border: 2px solid rgb(236, 203, 180);
+            box-shadow: #0000001f 0 1px 6px, #0000001f 0 1px 4px;
+            border-radius: 10px;
+            padding: 0 30px;
+            animation: rotatettb 4s ease-in-out 0s infinite alternate;
+        }
+
+        .border::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 3px solid #42b883;
+            background: transparent;
+            animation: clip 3s linear infinite;
+        }
+
+        @keyframes rotatettb {
+            100% {
+                transform: rotate(5deg);
+            }
+
+            0% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        @keyframes clip {
+
+            0%,
+            to {
+                clip-path: circle(30px at 100% 100%);
+            }
+
+            25% {
+                clip-path: circle(30px at 100% 0);
+            }
+
+            50% {
+                clip-path: circle(30px at 0 0);
+            }
+
+            75% {
+                clip-path: circle(30px at 0 100%);
+            }
+        }
+
+        .login {}
+
+        .login .inputBox {
+            width: 320px;
+            height: 52px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            margin-top: 15px;
+        }
+
+        .login .inputBox input {
+            border: none;
+            width: 100%;
+            height: 100%;
+            border: 1px solid darkgray;
+            border-radius: 3px;
+            padding-left: 10px;
+        }
+
+        .login .inputBox input:focus {
+            border: none;
+        }
+
+        .login .inputBox input:focus~.label {
+            transform: translate(0, -26px);
+            font-size: 16px;
+            color: #007bad;
+        }
+
+        .login .inputBox .label {
+            position: absolute;
+            left: 10px;
+            color: darkgray;
+            pointer-events: none;
+            background: #fff;
+            padding: 0 5px;
+            transition: all .2s;
+            font-size: 18px;
+        }
+
+        @keyframes heartAnimation {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            10%,
+            30% {
+                transform: scale(.9);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: scale(1.1);
+            }
+
+            50%,
+            70% {
+                transform: scale(1.1);
+            }
+        }
+
         @keyframes conesBottom {
 
             100%,
@@ -886,8 +1096,10 @@
         <!--正八边形-->
         <div class="eight"></div>
 
+        <!--梯形-->
         <div class="lx"></div>
 
+        <!--五角星⭐️-->
         <div class="star"></div>
     </div>
 
@@ -935,7 +1147,7 @@
         </ui>
 
         <!-- 3d照片墙 -->
-        <div class="demo-perspective-photo">
+        <div class="demo-perspective-photo" style="display: none;">
             <div id="stage">
                 <div id="container">
                     <!-- 此处使用div代替 -->
@@ -946,6 +1158,46 @@
                     <div class='example' style="background-image: url('carousel/2.jpeg');"></div>
                     <div class='example' style="background-image: url('carousel/3.jpeg');"></div>
                 </div>
+            </div>
+        </div>
+
+        <!--翻转-->
+        <div class="cardContainer" style="display: none;">
+            <div class="card">
+                <div class="number" style="--i:1" data-text="2"></div>
+                <div class="text">你只管努力，<br />剩下的交给时间。</div>
+            </div>
+            <div class="card">
+                <div class="number" style="--i:2" data-text="0"></div>
+                <div class="text">喜欢就要争取，<br />不行就要努力。</div>
+            </div>
+            <div class="card">
+                <div class="number" style="--i:3" data-text="2"></div>
+                <div class="text">不要假装努力，<br />结果不会陪你演戏。</div>
+            </div>
+            <div class="card">
+                <div class="number" style="--i:4" data-text="3"></div>
+                <div class="text">每天努力一点点，<br />每天进步一点点。</div>
+            </div>
+        </div>
+
+        <!--爱心-->
+        <div class="heart" style="display: none;">❤️</div>
+
+        <!--边框-->
+        <div class="border" style="display: none;">
+            <p>要优秀啊，不然怎么遇到优秀的人！</p>
+        </div>
+
+        <!--登陆-->
+        <div class="login" style="display: none;">
+            <div class="email inputBox">
+                <input type="email">
+                <p class="label">Email Address</p>
+            </div>
+            <div class="password inputBox">
+                <input type="password">
+                <p class="label">password</p>
             </div>
         </div>
     </div>
